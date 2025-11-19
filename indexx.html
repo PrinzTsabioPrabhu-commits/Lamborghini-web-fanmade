@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id" style="scroll-behavior: smooth;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Squadra Corse - Motorsport | Lamborghini.vercel.app</title>
+    <link rel="shortcut icon" href="img/Lamborghini-removebg-preview.png" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'audi-red': '#ff0000',
+                        'audi-dark': '#111827',
+                        'audi-light': '#F9FAFB',
+                        'audi-gray': '#4B5563',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* 💡 PENTING: Scroll Behavior untuk Transisi Halus antar ID */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Gaya kustom untuk memastikan ikon menu tidak terlihat di desktop */
+        @media (min-width: 768px) {
+            #mobile-menu-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-audi-dark bg-white">
+
+    <header class="bg-black shadow-sm sticky top-0 z-50  border-gray-100">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+            <div class="flex-shrink-0">
+                <a href="#home"
+                    class="text-3xl font-bold text-audi-light tracking-widest transition duration-300 hover:text-audi-red">
+                    LAMBORGHINI
+                </a>
+            </div>
+
+            <div class="hidden md:block">
+                <div class="flex items-baseline space-x-8">
+                    <a href="index.html"
+                        class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">Home</a>
+                    <a href="#news"
+                        class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">
+                        News</a>
+                    <a href="#championships"
+                        class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">Championships</a>
+                    <a href="#model"
+                        class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">Model</a>
+                    <a href="#experience"
+                        class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">Experience</a>
+
+                </div>
+            </div>
+
+            <div class="-mr-2 flex md:hidden">
+                <button id="mobile-menu-button" type="button"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-audi-light hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-audi-red transition duration-300"
+                    aria-controls="mobile-menu" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg id="menu-icon-open" class="block h-6 w-6 transition duration-300"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    <svg id="menu-icon-close" class="hidden h-6 w-6 transition duration-300"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                        aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <div class="md:hidden hidden bg-black shadow-lg border-t border-white" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home"
+                    class="block px-3 py-2 text-base font-medium text-audi-light hover:bg-audi-light hover:text-audi-red transition duration-300">Home</a>
+                <a href="#news"
+                    class="block px-3 py-2 text-base font-medium text-audi-light hover:bg-audi-light hover:text-audi-red transition duration-300">
+                    News</a>
+                <a href="#championship"
+                    class="block px-3 py-2 text-base font-medium text-audi-light hover:bg-audi-light hover:text-audi-red transition duration-300">Championship</a>
+                <a href="#model"
+                    class="block px-3 py-2 text-base font-medium text-audi-light hover:bg-audi-light hover:text-audi-red transition duration-300">Model</a>
+                <a href="#experience"
+                    class="block px-3 py-2 text-base font-medium text-audi-light hover:bg-audi-light hover:text-audi-red transition duration-300">Experience</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home"
+            class="relative min-h-[60vh] md:min-h-[80vh] flex items-center bg-audi-dark text-white overflow-hidden">
+            <img class="absolute inset-0 w-full h-full object-cover opacity-75"
+                src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/0_facelift_2025/motorsport/landing/hero/hero1-desktop.jpg"
+                alt="Audi e-tron GT">
+            <div class="absolute inset-0 bg-audi-dark/40 transition duration-500"></div>
+
+            <div class="container mx-auto px-4 z-10 text-left md:w-2/3 lg:w-1/2 ml-4 md:ml-12">
+
+
+                <p class="text-2xl uppercase tracking-widest text-audi-white mb-3 font-medium">Lamborghini Motorsport
+                </p>
+                <h1 class="text-5xl uppercase md:text-6xl font-semibold leading-tight mb-6">Squadra Corse</h1>
+                <a href="https://www.lamborghini.com/en-en/motorsport/motorsport-models/temerario-gt3#val-ht"
+                    class="bg-audi-transperant border border-audi-red hover:bg-audi-red text-white font-semibold py-3 px-8 rounded-full shadow-xl uppercase tracking-wider transition duration-300 transform hover:scale-105 shadow-red-600 inline-block">Temerario
+                    GT-3 &rarr;</a>
+            </div>
+        </section>
+
+
+
+        <section id="news" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2
+                    class="text-4xl uppercase font-semibold text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block">
+                    Motorsport News</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-gray-600 hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/news/2025/11_12_absolute_corse/cover.jpg"
+                            alt="Audi A7 Sportback">
+                        <div class="p-6 text-left">
+                            <p class="text-xs uppercase text-audi-light mb-4">12 November 2025</p>
+                            <h3 class="text-4xl uppercase font-semibold mb-1 text-audi-light">Team Insight:</h3>
+                            <p class="text-2xl uppercase text-audi-light mb-4">Absolute Corse</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/news/team-insight-absolute-corse"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-gray-600 hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/news/2025/11_11_misano/cover.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-left">
+                            <p class="text-xs uppercase text-audi-light mb-4">11 Novemeber 2025</p>
+                            <h3 class="text-3xl uppercase font-semibold mb-1 text-audi-light">Lamborghini World Finals:
+                            </h3>
+                            <p class="text-2x1 text-audi-light mb-4">2025 edition a resounding success at Misano</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/news/lamborghini-world-finals-2025-edition-a-resounding-success-at-misano"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-gray-600 hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/news/2025/11_09_wf/cover.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-left">
+                            <p class="text-xs uppercase text-audi-light mb-4 text-audi-light">9 November 2025</p>
+                            <h3 class="text-3xl uppercase font-semibold mb-1 text-audi-light">Lamborghini World Finals
+                                2025:</h3>
+                            <p class="text-1x1 text-audi-light mb-4 text-audi-light">Danny Formal and Hampus Ericsson
+                                crowned Pro champions at Misano Adriatico.</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/news/lamborghini-world-finals-2025-danny-formal-and-hampus-ericsson-crowned-pro-champions-at-misano-adriatico"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+        </section>
+
+
+
+        <section id="championships" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4 ">
+                <h2
+                    class="text-4xl uppercase font-semibold text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block">
+                    Championships</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-audi-dark transition duration-300 hover:shadow-gray-600 hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://api.lemans.org/media/cache/api_news_large/assets/fileuploads/66/5f/665f155a5c920.jpg"
+                            alt="Audi A7 Sportback">
+                        <div class="p-7 text-left">
+                            <h3 class="text-2xl uppercase text-audi-dark mb-1 text-audi-light">Lamborghini</h3>
+                            <p class="text-4xl uppercase font-semibold text-audi-light mb-4">Super Trofeo</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/super-trofeo"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-audi-dark transition duration-300 hover:shadow-gray-600 hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/customer-racing/custom_gt3.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-left">
+                            <h3 class="text-2xl uppercase text-audi-light mb-1 text-audi-dark">Gt3</h3>
+                            <p class="text-4xl uppercase font-semibold text-audi-light mb-4">customer racing</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/gt3"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+        </section>
+
+
+
+
+        <section id="model" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4">
+                <h2
+                    class="text-4xl font-semibold uppercase text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block">
+                    Motorsport models</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-2xl hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.topgear.com/sites/default/files/2023/07/1-Lamborghini-SC63.jpg"
+                            alt="Audi A7 Sportback">
+                        <div class="p-6 text-center">
+                            <h3 class="text-sm uppercase font-light mb-1 text-audi-light">Lamborghini</h3>
+                            <p class="text-4xl font-semibold text-audi-light mb-4">SC63</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/gtp/sc63#val-ht"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-2xl hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/cars/huracan_super_trofeo_evo2/feeltheengine-desktop.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-center">
+                            <h3 class="text-sm uppercase mb-1 text-audi-light">lamborghini</h3>
+                            <p class="text-2xl uppercase font-semibold text-audi-light mb-4">Huracan Super Trofeo Evo2</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/motorsport-models/hurac%C3%A1n-super-trofeo-evo2"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+
+
+
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-2xl hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/cars/huracan_gt3_evo2/hero/hero.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-center">
+                            <h3 class="text-sm mb-1 uppercase text-audi-light">lamborghini</h3>
+                            <p class="text-2xl uppercase font-semibold mb-4 text-audi-light">Huracan GT3 Evo2</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/motorsport-models/huracan-gt3-evo2"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-2xl hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/news/2025/07_11_gt3/gallery_2_m.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-center">
+                            <h3 class="text-sm uppercase font-normal mb-1 text-audi-light">lamborghini</h3>
+                            <p class="text-3xl uppercase font-semibold mb-4 text-audi-light">Temerario Gt3</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/motorsport-models/temerario-gt3#val-ht"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+
+
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-2xl hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/cars/sc18_alston/sc18_header.jpg"
+                            alt="Audi Q8 SUV">
+                        <div class="p-6 text-center">
+                            <h3 class="text-sm uppercase font-normal mb-1 text-audi-light">Lamborghini</h3>
+                            <p class="text-3xl uppercase font-semibold mb-4 text-audi-light">SC18 Alston</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/motorsport-models/sc18-alston"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-gray-950 rounded-xl shadow-lg overflow-hidden border border-gray-950 transition duration-300 hover:shadow-2xl hover:scale-[1.01]">
+                        <img class="w-full h-56 object-cover"
+                            src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/news/2020/motorsport/2020_07_29_Lamborghini_Essenza_SCV12/Lamborghini_Essenza_SCV12_1_og.jpg"
+                            alt="Audi R8 Coupe">
+                        <div class="p-6 text-center">
+                            <h3 class="text-sm uppercase font-normal mb-1 text-audi-light">Lamborghini</h3>
+                            <p class="text-4xl uppercase font-semibold mb-4 text-audi-light">Essenza SCV12</p>
+                            <a href="https://www.lamborghini.com/en-en/motorsport/motorsport-models/essenza-scv12"
+                                class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
+                                Detail</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
+
+        <section id="experience" class="py-20 bg-audi-dark/95 text-white"
+            style="background-image: url('https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/experience/home/2024/experience_og_01.jpg'); background-size: cover; background-position: center;">
+            <div
+                class="container mx-auto px-4 text-center bg-audi-dark/70 p-10 rounded-xl transition duration-500 hover:bg-audi-dark/80">
+                <h2 class="text-5xl font-semibold mb-4">Experience Lamborghini<br>Innovation Firsthand.</h2>
+                <p class="text-xl mb-10 text-gray-200 max-w-4xl mx-auto">Nothing can replace the driving
+                    experience.
+                    Book your Experience today.</p>
+                <button
+                    class="bg-white hover:bg-audi-red text-audi-dark hover:text-white font-semibold py-3 px-10 rounded-full shadow-xl uppercase tracking-wider transition duration-300 transform hover:scale-105"><a
+                        href="https://www.lamborghini.com/en-en/motorsport/experience">Get the experience
+                        &rarr;</a></button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-audi-dark text-gray-400 py-10">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p class="mb-2">&copy; 2025 Lamborghini Indonesia & Prinz.Co. All Rights Reserved.</p>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="hover:text-white transition duration-300"> Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('menu-icon-open');
+        const iconClose = document.getElementById('menu-icon-close');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            iconOpen.classList.toggle('hidden');
+            iconClose.classList.toggle('hidden');
+        });
+
+        // Menutup menu saat link di klik (khusus mobile)
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                // Menutup menu setelah klik untuk pengalaman pengguna yang lebih baik
+                setTimeout(() => {
+                    menu.classList.add('hidden');
+                    iconOpen.classList.remove('hidden');
+                    iconClose.classList.add('hidden');
+                }, 100);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
