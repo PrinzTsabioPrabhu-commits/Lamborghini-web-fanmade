@@ -22,6 +22,26 @@
                     },
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
+                    },
+                    // ✨ KONFIGURASI ANIMASI BARU UNTUK PAGE LOAD
+                    animation: {
+                        'slide-in-down': 'slideInDown 0.6s ease-out forwards', // Untuk Header
+                        'slide-in-up': 'slideInUp 0.8s ease-out forwards', // Untuk Home Section
+                        'fade-in': 'fadeIn 1s ease-out forwards', // Untuk elemen latar belakang
+                    },
+                    keyframes: {
+                        slideInDown: {
+                            '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideInUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        }
                     }
                 }
             }
@@ -40,12 +60,17 @@
                 display: none;
             }
         }
+        
+        /* Pastikan elemen yang diberi animasi mulai dengan opasitas 0 */
+        .animate-slide-in-down, .animate-slide-in-up, .animate-fade-in {
+            opacity: 0;
+        }
     </style>
 </head>
 
 <body class="font-sans text-audi-dark bg-white">
 
-    <header class="bg-black shadow-sm sticky top-0 z-50  border-gray-100">
+    <header class="bg-black shadow-sm sticky top-0 z-50 border-gray-100 animate-slide-in-down">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
             <div class="flex-shrink-0">
                 <a href="#home"
@@ -112,12 +137,14 @@
     <main>
         <section id="home"
             class="relative min-h-[60vh] md:min-h-[80vh] flex items-center bg-audi-dark text-white overflow-hidden">
-            <img class="absolute inset-0 w-full h-full object-cover opacity-75"
+            <img class="absolute inset-0 w-full h-full object-cover opacity-75 animate-fade-in"
                 src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/0_facelift_2025/motorsport/landing/hero/hero1-desktop.jpg"
-                alt="Audi e-tron GT">
-            <div class="absolute inset-0 bg-audi-dark/40 transition duration-500"></div>
+                alt="Audi e-tron GT" style="animation-delay: 0.1s; animation-duration: 1.5s;">
+            <div class="absolute inset-0 bg-audi-dark/40 transition duration-500 animate-fade-in"
+                style="animation-delay: 0.3s; animation-duration: 1.5s;"></div>
 
-            <div class="container mx-auto px-4 z-10 text-left md:w-2/3 lg:w-1/2 ml-4 md:ml-12">
+            <div class="container mx-auto px-4 z-10 text-left md:w-2/3 lg:w-1/2 ml-4 md:ml-12 animate-slide-in-up"
+                style="animation-delay: 0.8s; animation-duration: 1s;">
 
 
                 <p class="text-2xl uppercase tracking-widest text-audi-white mb-3 font-medium">Lamborghini Motorsport
@@ -346,27 +373,31 @@
     </footer>
 
     <script>
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('menu-icon-open');
-        const iconClose = document.getElementById('menu-icon-close');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
-        });
-
-        // Menutup menu saat link di klik (khusus mobile)
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                // Menutup menu setelah klik untuk pengalaman pengguna yang lebih baik
-                setTimeout(() => {
-                    menu.classList.add('hidden');
-                    iconOpen.classList.remove('hidden');
-                    iconClose.classList.add('hidden');
-                }, 100);
-            });
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            
+            if(btn && menu && iconOpen && iconClose) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+    
+                // Menutup menu saat link di klik (khusus mobile)
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Menutup menu setelah klik untuk pengalaman pengguna yang lebih baik
+                        setTimeout(() => {
+                            menu.classList.add('hidden');
+                            iconOpen.classList.remove('hidden');
+                            iconClose.classList.add('hidden');
+                        }, 100);
+                    });
+                });
+            }
         });
     </script>
 
