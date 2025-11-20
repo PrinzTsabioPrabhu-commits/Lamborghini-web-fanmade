@@ -25,13 +25,13 @@
                     },
                     // ✨ KONFIGURASI ANIMASI BARU UNTUK PAGE LOAD
                     animation: {
-                        'slide-in-down': 'slideInDown 0.6s ease-out forwards', // Untuk Header
+                        'slide-in-down': 'slideInDown 0.8s ease-out forwards', // Untuk Header
                         'slide-in-up': 'slideInUp 0.8s ease-out forwards', // Untuk Home Section
                         'fade-in': 'fadeIn 1s ease-out forwards', // Untuk elemen latar belakang
                     },
                     keyframes: {
                         slideInDown: {
-                            '0%': { transform: 'translateY(-100%)', opacity: '0' },
+                            '0%': { transform: 'translateY(-30px)', opacity: '0' },
                             '100%': { transform: 'translateY(0)', opacity: '1' },
                         },
                         slideInUp: {
@@ -68,7 +68,7 @@
     </style>
 </head>
 
-<body class="font-sans text-audi-dark bg-white">
+<body class="font-sans text-audi-dark bg-black">
 
     <header class="bg-black shadow-sm sticky top-0 z-50 border-gray-100 animate-slide-in-down">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
