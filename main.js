@@ -15,6 +15,8 @@ const fetchApi = async () => {
         data.quotes.map((item) =>{
             const p = document.createElement("p");
             p.textContent = `${item.quote} ${item.author}`;
+            p.style.color = 'white'
+            p.classList.add('banyu');
             container.appendChild(p);
 
         });
@@ -26,7 +28,14 @@ const fetchApi = async () => {
 
 fetchApi()
 
+const container = document.getElementById('container');
 
+container.addEventListener ('click', () => {
+    container.classList.add('nain');
+})
+
+
+const btn = 
 
 const nama = ['Verstappen', 'Norris', 'Russel', 123];
 
