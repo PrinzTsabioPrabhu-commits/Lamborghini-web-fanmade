@@ -35,7 +35,7 @@ container.addEventListener ('click', () => {
 })
 
 
-const btn = 
+
 
 const nama = ['Verstappen', 'Norris', 'Russel', 123];
 

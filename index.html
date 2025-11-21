@@ -4,13 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automobili Lamborghini - Official Home | lamborghini-home.vercel.app</title>
+    <title>Automobili Lamborghini - Official Home | Motorsport Video Search</title>
     <link rel="shortcut icon" href="img/Lamborghini-removebg-preview.png" type="image/x-icon">
+    
     <script src="https://cdn.tailwindcss.com"></script>
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <script>
+        // Konfigurasi Tailwind dipertahankan
         tailwind.config = {
             theme: {
                 extend: {
@@ -23,21 +25,6 @@
                     fontFamily: {
                         sans: ['Poppins', 'sans-serif'],
                     },
-                    // KONFIGURASI ANIMASI UNTUK FADE-IN DAN SLIDE-IN
-                    animation: {
-                        'fade-in': 'fadeIn 1s ease-out forwards', 
-                        'slide-in-up': 'slideInUp 1s ease-out forwards',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        slideInUp: {
-                            '0%': { transform: 'translateY(20px)', opacity: '0' },
-                            '100%': { transform: 'translateY(0)', opacity: '1' },
-                        }
-                    }
                 }
             }
         }
@@ -48,22 +35,33 @@
             scroll-behavior: smooth;
         }
 
+        /* Gaya Khusus untuk mengatasi FOUC (Flash of Unstyled Content) */
+        .fouc-hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .fouc-visible {
+            opacity: 1;
+        }
+        
         @media (min-width: 768px) {
             #mobile-menu-button {
                 display: none;
             }
         }
-        
-        /* Gaya tambahan untuk memastikan elemen yang dianimasikan awalnya tersembunyi */
-        .initial-hidden {
-            opacity: 0;
+
+        /* CSS Tambahan untuk line-clamp */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     </style>
 </head>
 
-<body class="font-sans text-audi-dark bg-white animate-fade-in">
+<body class="font-sans text-audi-dark bg-black fouc-hidden">
 
-    <header class="bg-black shadow-sm sticky top-0 z-50  border-gray-100">
+    <header class="bg-black shadow-sm sticky top-0 z-50 border-gray-100">
         <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
             <div class="flex-shrink-0">
                 <a href="#home"
@@ -90,11 +88,12 @@
                         class="text-sm font-semibold bg-audi-red text-white px-5 py-2 rounded-full hover:bg-audi-dark transition duration-300 tracking-wider shadow-md transform hover:scale-105">Find
                         a Dealer</a>
                 </div>
+                
             </div>
 
             <div class="-mr-2 flex md:hidden">
                 <button id="mobile-menu-button" type="button"
-                    class="inline-flex items-center justify-center p-2 rounded-md text-audi-dark hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-audi-red transition duration-300"
+                    class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-100 hover:text-audi-dark focus:outline-none focus:ring-2 focus:ring-audi-red transition duration-300"
                     aria-controls="mobile-menu" aria-expanded="false">
                     <span class="sr-only">Open main menu</span>
                     <svg id="menu-icon-open" class="block h-6 w-6 transition duration-300"
@@ -138,21 +137,21 @@
         <section id="home"
             class="relative min-h-[60vh] md:min-h-[80vh] flex items-center bg-audi-dark text-white overflow-hidden">
             
-            <img class="absolute inset-0 w-full h-full object-cover opacity-70 initial-hidden animate-fade-in delay-[100ms]"
+            <img class="absolute inset-0 w-full h-full object-cover opacity-70 transition duration-500"
                 src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/0_facelift_2025/model_details/urus/urus_perf/gallery/gallery1-desktop.jpg"
                 alt="Audi e-tron GT">
             
-            <div class="absolute inset-0 bg-audi-dark/40 transition duration-500 initial-hidden animate-fade-in delay-[150ms]"></div>
+            <div class="absolute inset-0 bg-audi-dark/40 transition duration-500"></div>
 
             <div class="container mx-auto px-4 z-10 text-left md:w-2/3 lg:w-1/2 ml-4 md:ml-12">
                 
-                <p class="text-sm uppercase tracking-widest text-audi-white mb-3 font-medium initial-hidden animate-slide-in-up delay-[400ms]">This is</p>
+                <p class="text-sm uppercase tracking-widest text-audi-light mb-3 font-medium">This is</p>
                 
-                <h1 class="text-5xl md:text-7xl font-light leading-tight mb-6 initial-hidden animate-slide-in-up delay-[600ms]">The <i><b class="font-semibold">URUS
-                            PERFOMANCE.</b></i></h1>
+                <h1 class="text-5xl md:text-7xl font-light leading-tight mb-6">The <i><b class="font-semibold">URUS
+                            PERFORMANCE.</b></i></h1>
                 
                 <a href="https://www.lamborghini.com/en-en/models/urus/urus-performante#val-ht"
-                    class="bg-audi-transperant border border-audi-red hover:bg-audi-red text-white font-semibold py-3 px-8 rounded-full shadow-xl uppercase tracking-wider transition duration-300 transform hover:scale-105 inline-block initial-hidden animate-slide-in-up">Discover
+                    class="bg-audi-transperant border border-audi-red hover:bg-audi-red text-white font-semibold py-3 px-8 rounded-full shadow-xl uppercase tracking-wider transition duration-300 transform hover:scale-105 inline-block">Discover
                     More</a>
             </div>
         </section>
@@ -162,14 +161,14 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                     <div>
                         <h2
-                            class="text-4xl font-light text-audi-light mb-4 border-b-2 border-audi-red pb-2 inline-block initial-hidden animate-slide-in-up delay-[100ms]">
+                            class="text-4xl font-light text-audi-light mb-4 border-b-2 border-audi-red pb-2 inline-block">
                             Philosophy.
                         </h2>
-                        <p class="text-audi-light leading-relaxed mt-4 initial-hidden animate-slide-in-up delay-[250ms]">
+                        <p class="text-audi-light leading-relaxed mt-4">
                             Lamborghini's philosophy is to "Drive Humans Beyond" by embodying bravery, authenticity, and
                             the unexpected through its design and engineering.
                         </p>
-                        <ul class="mt-6 space-y-2 text-audi-light initial-hidden animate-slide-in-up delay-[400ms]">
+                        <ul class="mt-6 space-y-2 text-audi-light">
                             <p class="text-audi-light leading-relaxed mt-4">Core Values:</p>
                             <li class="flex items-center"><span class="text-audi-red mr-2 text-xl">&raquo;</span>
                                 Performance Heritage.</li>
@@ -178,14 +177,14 @@
                             <li class="flex items-center"><span class="text-audi-red mr-2 text-xl">&raquo;</span>
                                 Timeless Design.</li>
                         </ul>
-                        <div class="mt-8 initial-hidden animate-slide-in-up delay-[550ms]">
+                        <div class="mt-8">
                             <button
                                 class="bg-white border border-audi-dark hover:bg-audi-dark hover:text-white text-audi-dark font-medium py-2 px-6 rounded-full transition duration-300 text-sm tracking-wider"><a
                                     href="https://www.audi-mediacenter.com/en/technology-235">Read More
                                     &rarr;</a></button>
                         </div>
                     </div>
-                    <div class="h-64 bg-audi-light border border-black rounded-lg shadow-lg overflow-hidden initial-hidden animate-fade-in delay-[600ms]">
+                    <div class="h-64 bg-audi-light border border-black rounded-lg shadow-lg overflow-hidden">
                         <img class="w-full h-full object-cover rounded-lg transform hover:scale-105 transition duration-500"
                             src="https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/face_react/beyond/landing/hero/beyond_land_hero_01.jpg"
                             alt="Filosofi Audi">
@@ -199,16 +198,16 @@
             <div
                 class="container mx-auto px-4 text-center bg-audi-dark/60 p-12 rounded-xl transition duration-500 hover:bg-audi-dark/75">
                 
-                <p class="text-sm uppercase tracking-widest text-audi-red mb-3 font-bold initial-hidden animate-slide-in-up delay-[100ms]">Racing Heritage</p>
+                <p class="text-sm uppercase tracking-widest text-audi-red mb-3 font-bold">Racing Heritage</p>
                 
-                <h2 class="text-5xl font-bold mb-6 initial-hidden animate-slide-in-up delay-[250ms]">Motorsport: The Drive for
+                <h2 class="text-5xl font-bold mb-6">Motorsport: The Drive for
                     Victory.</h2>
                 
-                <p class="text-xl mb-10 text-gray-300 max-w-4xl mx-auto initial-hidden animate-slide-in-up delay-[400ms]">Dive into the world of Lamborghini Motorsport,
+                <p class="text-xl mb-10 text-gray-300 max-w-4xl mx-auto">Dive into the world of Lamborghini Motorsport,
                     where passion meets precision, and every race is a new story waiting to be told.
                 </p>
                 
-                <div class="flex justify-center space-x-4 initial-hidden animate-slide-in-up delay-[550ms]">
+                <div class="flex justify-center space-x-4">
                     <a href="indexx.html"
                         class="bg-audi-red hover:bg-white hover:text-audi-dark text-white font-medium py-3 px-8 rounded-full shadow-lg uppercase tracking-wider transition duration-300 transform hover:scale-105 inline-block">Explore
                         <i class="text-audi-white font-semibold">Motorsport</i> &rarr;</a>
@@ -223,7 +222,7 @@
         <section id="model" class="py-20 bg-gray-900">
             <div class="container mx-auto px-4">
                 <h2
-                    class="text-4xl font-semibold text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block initial-hidden animate-slide-in-up delay-[100ms]">
+                    class="text-4xl font-semibold text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block">
                     Exclusive
                     Model Line</h2>
 
@@ -235,7 +234,7 @@
                             alt="Audi A7 Sportback">
                         <div class="p-6 text-center">
                             <h3 class="text-2xl uppercase font-semibold mb-1 text-audi-light">TEMERARIO</h3>
-                            <p class="text-sm  text-audi-light mb-4"><i>"You Can't Hide Who You Are"</i></p>
+                            <p class="text-sm text-audi-light mb-4"><i>"You Can't Hide Who You Are"</i></p>
                             <a href="https://www.lamborghini.com/en-en/models/temerario#val-ht"
                                 class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
                                 Detail</a>
@@ -261,7 +260,7 @@
                             alt="Audi Q8 SUV">
                         <div class="p-6 text-center">
                             <h3 class="text-2xl uppercase font-semibold mb-1 text-audi-light">Huracan Series</h3>
-                            <p class="text-sm  mb-4 text-audi-light"><i>"Augmented Reality"</i></p>
+                            <p class="text-sm mb-4 text-audi-light"><i>"Augmented Reality"</i></p>
                             <a href="https://www.lamborghini.com/en-en/models/huracan#val-ht"
                                 class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
                                 Detail</a>
@@ -274,7 +273,7 @@
                             alt="Audi Q8 SUV">
                         <div class="p-6 text-center">
                             <h3 class="text-2xl uppercase font-semibold mb-1 text-audi-light">Urus SE</h3>
-                            <p class="text-sm  mb-4 text-audi-light"><i>"Dare to Live more"</i>
+                            <p class="text-sm mb-4 text-audi-light"><i>"Dare to Live more"</i>
                             </p>
                             <a href="https://www.lamborghini.com/en-en/models/urus/urus-se#val-ht"
                                 class="inline-block bg-audi-dark hover:bg-audi-red text-white font-medium py-2 px-6 rounded-full transition duration-300 text-xs uppercase tracking-wider">Model
@@ -310,16 +309,56 @@
                 </div>
             </div>
         </section>
+        
+        <section id="youtube-search-results" class="py-20 bg-gray-950">
+            <div class="container mx-auto px-4">
+                <h2
+                    class="text-4xl font-semibold text-audi-light text-center mb-6 border-b-2 border-audi-red pb-2 inline-block">
+                    Motorsport - Search Video
+                </h2>
+                <p class="text-gray-400 text-center max-w-xl mx-auto mb-10">
+                    Find Lambo review videos from trusted YouTube reviewers, presented with a premium dark theme.
+                </p>
+
+                <div class="mb-12">
+                    <div class="flex max-w-2xl mx-auto rounded-full shadow-xl overflow-hidden border border-gray-700">
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Enter a topic, model name, or something else..."
+                            class="w-full px-6 py-4 text-lg text-audi-light bg-gray-900 focus:outline-none placeholder-gray-500"
+                            onkeydown="if(event.key === 'Enter') { searchKajian(); return false; }"
+                        />
+                        <button
+                            onclick="searchKajian()"
+                            class="flex items-center justify-center bg-audi-red text-white font-semibold px-6 py-4 hover:bg-audi-dark transition duration-300 transform hover:scale-105"
+                        >
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Cari
+                        </button>
+                    </div>
+                </div>
+
+                <div
+                    id="results"
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                >
+                    <p class="col-span-full text-center text-gray-400">Please type a keyword above to start your search.</p>
+                </div>
+            </div>
+        </section>
 
         <section id="dealer" class="py-20 bg-audi-dark text-white text-center"
             style="background-image: url('https://djx5h8pabpett.cloudfront.net/wp-content/uploads/2023/11/HR_Owen_Lamborghini_2023_620-scaled.jpg'); background-size: cover; background-position: center;">
             <div class=" container mx-auto px-4 text-center bg-audi-dark/70 p-10 rounded-xl transition duration-500
             hover:bg-audi-dark/80">
-                <p class="text-sm uppercase tracking-widest text-audi-red mb-3 font-bold initial-hidden animate-slide-in-up delay-[100ms]">Access Premium Services</p>
-                <h2 class="text-4xl font-semibold mb-6 initial-hidden animate-slide-in-up delay-[250ms]">Visit an Authorized Audi Dealer</h2>
-                <p class="text-lg mb-10 text-gray-300 max-w-3xl mx-auto initial-hidden animate-slide-in-up delay-[400ms]">Experience luxury firsthand and receive
+                <p class="text-sm uppercase tracking-widest text-audi-red mb-3 font-bold">Access Premium Services</p>
+                <h2 class="text-4xl font-semibold mb-6">Visit an Authorized Audi Dealer</h2>
+                <p class="text-lg mb-10 text-gray-300 max-w-3xl mx-auto">Experience luxury firsthand and receive
                     consultation from our team of experts. We are ready to serve you with the highest standards.</p>
-                <div class="flex justify-center initial-hidden animate-slide-in-up delay-[550ms]">
+                <div class="flex justify-center">
                     <button
                         class="bg-audi-red hover:bg-white hover:text-audi-dark text-white font-semibold py-3 px-10 rounded-full shadow-lg uppercase tracking-wider transition duration-300 transform hover:scale-105"><a
                             href="https://www.lamborghini.com/en-en/dealerships#showroom">Find
@@ -331,12 +370,12 @@
         <section id="services" class="py-20 bg-black">
             <div class="container mx-auto px-4 max-w-4xl">
                 <h2
-                    class="text-3xl font-semibold text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block initial-hidden animate-slide-in-up delay-[100ms]">
+                    class="text-3xl font-semibold text-audi-light text-center mb-12 border-b-2 border-audi-red pb-2 inline-block">
                     AFTERSALES SERVICE.</h2>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div
-                        class="p-6 bg-audi-dark rounded-xl border border-black shadow-md transition duration-300 hover:ring-2 ring-audi-red hover:shadow-lg initial-hidden animate-slide-in-up">
+                        class="p-6 bg-audi-dark rounded-xl border border-black shadow-md transition duration-300 hover:ring-2 ring-audi-red hover:shadow-lg">
                         <h3 class="text-xl font-semibold mb-2 text-audi-light">Regular Maintenance</h3>
                         <p class="text-sm text-gray-400 mb-4">Ensure your Lamborghini's performance is always optimal
                             with
@@ -346,27 +385,132 @@
                             Service &rarr;</a>
                     </div>
                     <div
-                        class="p-6 bg-audi-light rounded-xl border border-gray-200 shadow-md transition duration-300 hover:ring-2 ring-audi-red hover:shadow-lg initial-hidden animate-slide-in-up ">
-                        <h3 class="text-xl font-semibold mb-2 text-audi-dark">Our Accecories</h3>
-                        <p class="text-sm text-audi-gray mb-4">Customize your Style
-                            of your Lamborghini.</p>
-                        <a href="https://www.lamborghini.com/en-en/accessories#val-ht"
-                            class="text-audi-dark hover:text-audi-red font-medium text-sm border-b border-audi-red pb-1 transition duration-300 hover:pb-1">Check
-                            Availabality &rarr;</a>
+                        class="p-6 bg-audi-light rounded-xl border border-gray-200 shadow-md transition duration-300 hover:ring-2 ring-audi-red hover:shadow-lg">
+                        <h3 class="text-xl font-semibold mb-2 text-audi-dark">Extended Warranty</h3>
+                        <p class="text-sm text-gray-700 mb-4">Extend your peace of mind beyond the standard warranty
+                            period for long-term security.</p>
+                        <a href="https://www.lamborghini.com/en-en/ownership/warranty"
+                            class="text-audi-red hover:text-audi-dark font-medium text-sm border-b border-audi-red pb-1 transition duration-300 hover:pb-1">View
+                            Options &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="experience" class="py-20 bg-audi-dark/95 text-white"
+    </main>
+
+    <script>
+        // FUNGSI UNTUK MENGATASI FOUC
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.remove('fouc-hidden');
+            document.body.classList.add('fouc-visible');
+        });
+
+        // GANTI DENGAN KUNCI API ANDA YANG ASLI DARI GOOGLE CLOUD
+        const API_KEY = "AIzaSyArNqh6xf3yOVXIyFRJoctWZz94wKmj9_A"; 
+
+        async function searchKajian() {
+            const query = document.getElementById("searchInput").value;
+            const resultsDiv = document.getElementById("results");
+
+            if (!query) {
+                alert("Masukkan kata kunci pencarian.");
+                return;
+            }
+
+            // Tampilan Loading
+            resultsDiv.innerHTML = `<div class="col-span-full text-center py-10">
+                <svg class="animate-spin h-8 w-8 text-audi-red mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="text-gray-400 mt-3">Mencari video...</p>
+            </div>`;
+
+            try {
+                // PERBAIKAN: Menggunakan kueri pencarian murni tanpa tambahan filter
+                const res = await fetch(
+                    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&maxResults=50&videoDuration=long&q=${encodeURIComponent(
+                        query 
+                    )}` // HANYA menggunakan 'query'
+                );
+
+                const data = await res.json();
+                resultsDiv.innerHTML = "";
+
+                if (!data.items || data.items.length === 0) {
+                    resultsDiv.innerHTML = `<p class="col-span-full text-center text-gray-400 py-10">Tidak ada hasil ditemukan untuk "${query}".</p>`;
+                    return;
+                }
+
+                data.items.forEach((video) => {
+                    // Filter untuk memastikan hanya video yang memiliki videoId yang ditampilkan.
+                    if (video.id.kind !== 'youtube#video') return; 
+
+                    const vid = video.id.videoId;
+                    const title = video.snippet.title;
+                    const channel = video.snippet.channelTitle; 
+                    const thumb = video.snippet.thumbnails.high.url;
+
+                    const card = `
+                        <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-800 transition duration-300 hover:ring-2 ring-audi-red hover:shadow-2xl">
+                            <a href="https://www.youtube.com/watch?v=${vid}" target="_blank">
+                                <img src="${thumb}" alt="${title}" class="w-full h-48 object-cover transition duration-300 hover:opacity-80" />
+                            </a>
+                            <div class="p-5">
+                                <p class="text-sm font-medium text-gray-400 mb-1 line-clamp-1">${channel}</p>
+                                <h2 class="font-extrabold text-audi-light text-lg line-clamp-2 h-14">
+                                    ${title}
+                                </h2>
+                                <a href="https://www.youtube.com/watch?v=${vid}" target="_blank" class="block">
+                                    <button class="w-full mt-4 bg-audi-red text-white py-2.5 rounded-full font-semibold hover:bg-audi-dark transition duration-300 shadow-md uppercase tracking-wider">
+                                        Watch now &rarr;
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    resultsDiv.innerHTML += card;
+                });
+            } catch (error) {
+                resultsDiv.innerHTML = `<p class="col-span-full text-audi-red text-center py-10">Terjadi kesalahan saat memuat data. Mohon coba lagi.</p>`;
+                console.error("Fetch Error:", error);
+            }
+        }
+
+        // Logika Tambahan untuk Menu Mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            
+            if (isExpanded) {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            }
+        });
+    </script>
+
+      <section id="experience" class="py-20 bg-audi-dark/95 text-white"
             style="background-image: url('https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/experience/home/2024/experience_og_01.jpg'); background-size: cover; background-position: center;">
             <div
                 class="container mx-auto px-4 text-center bg-audi-dark/70 p-10 rounded-xl transition duration-500 hover:bg-audi-dark/80">
-                <h2 class="text-5xl font-semibold mb-4 initial-hidden animate-slide-in-up delay-[100ms]">Experience Lamborghini<br>Innovation Firsthand.</h2>
-                <p class="text-xl mb-10 text-gray-200 max-w-4xl mx-auto initial-hidden animate-slide-in-up delay-[250ms]">Nothing can replace the driving experience.
+                <h2 class="text-5xl font-semibold mb-4">Experience Lamborghini<br>Innovation Firsthand.</h2>
+                <p class="text-xl mb-10 text-gray-200 max-w-4xl mx-auto">Nothing can replace the driving
+                    experience.
                     Book your Experience today.</p>
                 <button
-                    class="bg-white hover:bg-audi-red text-audi-dark hover:text-white font-semibold py-3 px-10 rounded-full shadow-xl uppercase tracking-wider transition duration-300 transform hover:scale-105 "><a
+                    class="bg-white hover:bg-audi-red text-audi-dark hover:text-white font-semibold py-3 px-10 rounded-full shadow-xl uppercase tracking-wider transition duration-300 transform hover:scale-105"><a
                         href="https://www.lamborghini.com/en-en/motorsport/experience">Get the experience
                         &rarr;</a></button>
             </div>
@@ -385,60 +529,35 @@
     </footer>
 
     <script>
-        // Logika Menu Mobile (Tidak berubah)
-        const btn = document.getElementById('mobile-menu-button');
-        const menu = document.getElementById('mobile-menu');
-        const iconOpen = document.getElementById('menu-icon-open');
-        const iconClose = document.getElementById('menu-icon-close');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            iconOpen.classList.toggle('hidden');
-            iconClose.classList.toggle('hidden');
+        document.addEventListener("DOMContentLoaded", function() {
+            const btn = document.getElementById('mobile-menu-button');
+            const menu = document.getElementById('mobile-menu');
+            const iconOpen = document.getElementById('menu-icon-open');
+            const iconClose = document.getElementById('menu-icon-close');
+            
+            if(btn && menu && iconOpen && iconClose) {
+                btn.addEventListener('click', () => {
+                    menu.classList.toggle('hidden');
+                    iconOpen.classList.toggle('hidden');
+                    iconClose.classList.toggle('hidden');
+                });
+    
+                // Menutup menu saat link di klik (khusus mobile)
+                document.querySelectorAll('#mobile-menu a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        // Menutup menu setelah klik untuk pengalaman pengguna yang lebih baik
+                        setTimeout(() => {
+                            menu.classList.add('hidden');
+                            iconOpen.classList.remove('hidden');
+                            iconClose.classList.add('hidden');
+                        }, 100);
+                    });
+                });
+            }
         });
-
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                setTimeout(() => {
-                    menu.classList.add('hidden');
-                    iconOpen.classList.remove('hidden');
-                    iconClose.classList.add('hidden');
-                }, 100);
-            });
-        });
-        
-        // Logika untuk menambahkan kelas animasi saat elemen terlihat (Intersection Observer)
-        // Kita gunakan kelas 'initial-hidden' sebagai marker dan menghapusnya saat elemen terlihat.
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                // Hanya jalankan jika elemen sepenuhnya terlihat atau baru masuk viewport
-                if (entry.isIntersecting) { 
-                    const element = entry.target;
-                    // Hapus kelas 'initial-hidden'
-                    element.classList.remove('initial-hidden'); 
-                    // Biarkan kelas animasi Tailwind yang sudah ada di HTML yang bekerja (animate-slide-in-up delay-[...])
-                    observer.unobserve(element); // Berhenti mengamati setelah animasi selesai
-                }
-            });
-        }, {
-            rootMargin: '0px',
-            threshold: 0.1 // Memicu saat 10% elemen terlihat
-        });
-
-        // Amati semua elemen yang memiliki kelas animasi di luar header/body
-        document.querySelectorAll('section:not(#home) .initial-hidden').forEach(el => {
-            observer.observe(el);
-        });
-        
-        // Catatan: Untuk Section Home (yang terlihat saat load), 
-        // kita biarkan `initial-hidden` dan `animate-slide-in-up` langsung bekerja 
-        // tanpa observer (karena observer akan selalu memicu elemen yang ada di awal).
-        document.querySelectorAll('#home .initial-hidden').forEach(el => {
-            el.classList.remove('initial-hidden');
-        });
-
     </script>
 
-</body>
 
+
+</body>
 </html>
