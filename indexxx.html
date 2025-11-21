@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automobili Lamborghini - Official Home | Motorsport Video Search</title>
+    <link rel="shortcut icon" href="img/Lamborghini-removebg-preview.png" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        // Konfigurasi Tailwind dipertahankan
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'audi-red': '#ff0000',
+                        'audi-dark': '#111827',
+                        'audi-light': '#F9FAFB',
+                        'audi-gray': '#4B5563',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+
+       
+    /* CSS untuk animasi masuk Halaman */
+    body {
+        opacity: 0; /* Keadaan awal: tidak terlihat */
+        transform: translateY(20px); /* Geser 20px ke bawah */
+        transition: opacity 1s ease-out, transform 1s ease-out; /* Durasi transisi 1 detik */
+    }
+
+    /* Kelas yang akan ditambahkan oleh JS saat halaman siap */
+    .page-loaded {
+        opacity: 1; /* Keadaan akhir: terlihat penuh */
+        transform: translateY(0); /* Kembali ke posisi normal */
+    }
+
+    /* CSS animasi kartu video (yang sudah ada) */
+    .video-card-enter {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .video-card-enter-active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+
+
+        /* Gaya Khusus untuk mengatasi FOUC (Flash of Unstyled Content) */
+        .fouc-hidden {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .fouc-visible {
+            opacity: 1;
+        }
+
+        @media (min-width: 768px) {
+            #mobile-menu-button {
+                display: none;
+            }
+        }
+
+        /* CSS Tambahan untuk line-clamp */
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+    </style>
+
+</head>
+
+<body class="bg-gray-950">
+    <main>
+
+        <header class="bg-black shadow-sm sticky top-0 z-50 border-gray-100">
+            <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex justify-between items-center">
+                <div class="flex-shrink-0">
+                    <a href="index.html"
+                        class="text-3xl font-bold text-audi-light tracking-widest transition duration-300 hover:text-audi-red">
+                        LAMBORGHINI
+                    </a>
+                </div>
+
+                <div class="hidden md:block">
+                    <div class="flex items-baseline space-x-8">
+                        <a href="index.html"
+                            class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">Home</a>
+                        <a href="indexx.html"
+                            class="text-sm font-medium text-audi-light hover:text-audi-red transition duration-300">Motorsport</a>
+                        <a href="#dealer"
+                            class="text-sm font-semibold bg-audi-red text-white px-5 py-2 rounded-full hover:bg-audi-dark transition duration-300 tracking-wider shadow-md transform hover:scale-105">Find
+                            a Dealer</a>
+                    </div>
+
+                </div>
+
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button"
+                        class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-100 hover:text-audi-dark focus:outline-none focus:ring-2 focus:ring-audi-red transition duration-300"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg id="menu-icon-open" class="block h-6 w-6 transition duration-300"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg id="menu-icon-close" class="hidden h-6 w-6 transition duration-300"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                            aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </nav>
+
+            <div class="md:hidden hidden bg-white shadow-lg border-t border-gray-100" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="#home"
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">Home</a>
+                    <a href="#about"
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">About</a>
+                    <a href="#motorsport"
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">Motorsport</a>
+                    <a href=""
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">Search</a>
+                    <a href="#model"
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">Model</a>
+                    <a href="#services"
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">Services</a>
+                    <a href="#experience"
+                        class="block px-3 py-2 text-base font-medium text-audi-dark hover:bg-audi-light hover:text-audi-red transition duration-300">Experience</a>
+                    <a href="#dealer"
+                        class="block w-full text-center mt-2 px-3 py-2 text-base font-semibold bg-audi-red text-white rounded-full hover:bg-audi-dark transition duration-300">Temukan
+                        Dealer</a>
+                </div>
+            </div>
+        </header>
+
+
+        <section id="youtube-search-results" class="py-20 bg-gray-950">
+            <div class="container mx-auto px-4">
+                <h2 class="text-5xl font-semibold text-audi-light text-center mb-6 pb-2 uppercase">
+                    Search Video
+                </h2>
+                <p class="text-gray-400 text-center max-w-xl mx-auto mb-10">
+                    Find Lambo review videos from trusted YouTube reviewers, presented with a premium dark
+                    theme.
+                </p>
+
+                <div class="mb-12">
+                    <div class="flex max-w-2xl mx-auto rounded-full shadow-xl overflow-hidden border border-gray-700">
+                        <input type="text" id="searchInput"
+                            placeholder="Enter a topic, model name, or something else..."
+                            class="w-full px-6 py-4 text-lg text-audi-light bg-gray-900 focus:outline-none placeholder-gray-500"
+                            onkeydown="if(event.key === 'Enter') { searchKajian(); return false; }" />
+                        <button onclick="searchKajian()"
+                            class="flex items-center justify-center bg-audi-red text-white font-semibold px-6 py-4 hover:bg-audi-dark transition duration-300 transform hover:scale-105">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                            Cari
+                        </button>
+                    </div>
+                </div>
+
+                <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <p class="col-span-full text-center text-gray-400">Please type a keyword above to start your
+                        search.
+                    </p>
+                </div>
+
+                <div id="load-more-container" class="mt-10"></div>
+            </div>
+        </section>
+
+       <script>
+    // FUNGSI UNTUK MENGATUR ANIMASI MASUK HALAMAN
+    document.addEventListener('DOMContentLoaded', function () {
+        // Tambahkan kelas 'page-loaded' untuk memicu animasi fade-in dan slide-up
+        document.body.classList.add('page-loaded'); 
+        // Logika FOUC lama dihapus/disederhanakan karena digantikan oleh animasi body
+    });
+
+    // 🔑 KONFIGURASI API
+    const API_KEY = "AIzaSyArNqh6xf3yOVXIyFRJoctWZz94wKmj9_A"; // GANTI DENGAN KUNCI API ASLI ANDA
+
+    // 💾 VARIABEL GLOBAL UNTUK PAGINATION
+    let nextPageToken = null;
+    let currentSearchQuery = '';
+
+    /**
+     * Melakukan pencarian video YouTube.
+     * @param {boolean} loadMore - True jika ini adalah permintaan "Muat Lebih Banyak". False untuk pencarian baru.
+     */
+    async function searchKajian(loadMore = false) {
+        const inputQuery = document.getElementById("searchInput").value.trim();
+        const resultsDiv = document.getElementById("results");
+        const loadMoreContainer = document.getElementById("load-more-container");
+
+        let queryToUse;
+        let tokenToUse;
+
+        // --- 1. Tentukan State Pencarian (Baru atau Load More) ---
+        if (!loadMore) {
+            queryToUse = inputQuery;
+            tokenToUse = null;
+
+            if (!queryToUse) {
+                alert("Masukkan kata kunci pencarian.");
+                return;
+            }
+            
+            currentSearchQuery = queryToUse; 
+            
+            resultsDiv.innerHTML = `<div class="col-span-full text-center py-10">
+                <svg class="animate-spin h-8 w-8 text-audi-red mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                <p class="text-gray-400 mt-3">Searching for "${queryToUse}"...</p>
+            </div>`;
+            loadMoreContainer.innerHTML = ''; 
+
+        } else {
+            queryToUse = currentSearchQuery;
+            tokenToUse = nextPageToken;
+            
+            if (!queryToUse || !tokenToUse) return; 
+            
+            loadMoreContainer.innerHTML = `<div class="text-center py-4">
+                <svg class="animate-spin h-8 w-8 text-audi-red mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            </div>`;
+        }
+
+        try {
+            const pageTokenParam = tokenToUse ? `&pageToken=${tokenToUse}` : '';
+
+            // --- 2. Panggilan API ---
+            const res = await fetch(
+                `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&maxResults=50&videoDuration=long&q=${encodeURIComponent(
+                    queryToUse
+                )}${pageTokenParam}` 
+            );
+
+            const data = await res.json();
+            
+            if (!loadMore) resultsDiv.innerHTML = "";
+            loadMoreContainer.innerHTML = ''; 
+            
+            if (data.error) {
+                 resultsDiv.innerHTML = `<p class="col-span-full text-audi-red text-center py-10">Error API: ${data.error.message}. Periksa kuota atau kunci API Anda.</p>`;
+                 return;
+            }
+
+            if (!data.items || data.items.length === 0) {
+                if (!loadMore) {
+                    resultsDiv.innerHTML = `<p class="col-span-full text-center text-gray-400 py-10">Tidak ada hasil ditemukan untuk "${queryToUse}".</p>`;
+                } else {
+                    loadMoreContainer.innerHTML = `<p class="text-gray-400 text-center py-4">Semua hasil sudah dimuat.</p>`;
+                }
+                return;
+            }
+
+            // --- 3. Tampilkan Hasil dengan Animasi Stagger ---
+            const fragment = document.createDocumentFragment(); 
+            let delay = 0; 
+
+            data.items.forEach((video) => {
+                if (video.id.kind !== 'youtube#video') return;
+
+                const vid = video.id.videoId;
+                const title = video.snippet.title;
+                const channel = video.snippet.channelTitle;
+                const thumb = video.snippet.thumbnails.high.url;
+
+                const videoCard = document.createElement('div');
+                // Tambahkan kelas animasi masuk kartu
+                videoCard.className = "bg-gray-900 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-gray-600 video-card-enter";
+                videoCard.innerHTML = `
+                    <a href="https://www.youtube.com/watch?v=${vid}" target="_blank">
+                        <img src="${thumb}" alt="${title}" class="w-full h-48 object-cover transition duration-300 hover:opacity-80" />
+                    </a>
+                    <div class="p-5">
+                        <p class="text-sm font-medium text-gray-400 mb-1 line-clamp-1">${channel}</p>
+                        <h2 class="font-extrabold text-audi-light text-lg line-clamp-2 h-14">
+                            ${title}
+                        </h2>
+                        <a href="https://www.youtube.com/watch?v=${vid}" target="_blank" class="block">
+                            <button class="w-full mt-4 bg-audi-red text-white py-2.5 rounded-full font-semibold hover:bg-audi-dark border border-audi-red transition duration-300 shadow-md uppercase tracking-wider">
+                                Watch now &rarr;
+                            </button>
+                        </a>
+                    </div>
+                `;
+                
+                fragment.appendChild(videoCard);
+
+                // Picu animasi stagger
+                setTimeout(() => {
+                    videoCard.classList.add('video-card-enter-active');
+                }, delay);
+                delay += 50; 
+            });
+
+            resultsDiv.appendChild(fragment);
+
+            // --- 4. Perbarui Token dan Tampilkan Tombol "Load More" ---
+            nextPageToken = data.nextPageToken || null;
+
+            if (nextPageToken) {
+                loadMoreContainer.innerHTML = `
+                    <div class="text-center mt-8">
+                        <button onclick="searchKajian(true)"
+                            class="bg-audi-red text-white py-3 px-8 rounded-full font-semibold hover:bg-audi-dark border border-audi-red transition duration-300 shadow-md uppercase tracking-wider transform hover:scale-105">
+                            Muat Lebih Banyak Video (Load More)
+                        </button>
+                    </div>
+                `;
+            } else if (loadMore || data.items.length > 0) { 
+                loadMoreContainer.innerHTML = `<p class="text-gray-400 text-center py-4">Semua hasil sudah dimuat.</p>`;
+            }
+
+
+        } catch (error) {
+            if (!loadMore) {
+                resultsDiv.innerHTML = `<p class="col-span-full text-audi-red text-center py-10">Terjadi kesalahan jaringan atau penguraian data. Silakan coba lagi.</p>`;
+            } else {
+                loadMoreContainer.innerHTML = `<p class="col-span-full text-audi-red text-center py-10">Gagal memuat lebih banyak data.</p>`;
+            }
+            console.error("Fetch Error:", error);
+        }
+    }
+
+    // Logika Tambahan untuk Menu Mobile 
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    if (mobileMenuButton) { 
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+
+            if (isExpanded) {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            }
+        });
+    }
+</script>
+    </main>
+
+    <footer class="bg-audi-dark text-gray-400 py-10">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p class="mb-2">&copy; 2025 Lamborghini Indonesia & Prinz.Co. All Rights Reserved.</p>
+            <div class="space-x-4">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <span class="text-gray-500">|</span>
+                <a href="#" class="hover:text-white transition duration-300"> Terms of Use</a>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>
