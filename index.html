@@ -91,6 +91,8 @@
                 
             </div>
 
+            
+
             <div class="-mr-2 flex md:hidden">
                 <button id="mobile-menu-button" type="button"
                     class="inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-gray-100 hover:text-audi-dark focus:outline-none focus:ring-2 focus:ring-audi-red transition duration-300"
@@ -309,8 +311,9 @@
                 </div>
             </div>
         </section>
-        
-        <section id="youtube-search-results" class="py-20 bg-gray-950">
+
+
+         <section id="youtube-search-results" class="py-20 bg-gray-950">
             <div class="container mx-auto px-4">
                 <h2
                     class="text-4xl font-semibold text-audi-light text-center mb-6 border-b-2 border-audi-red pb-2 inline-block">
@@ -350,6 +353,108 @@
             </div>
         </section>
 
+    <script>
+        // FUNGSI UNTUK MENGATASI FOUC
+        document.addEventListener('DOMContentLoaded', function() {
+            document.body.classList.remove('fouc-hidden');
+            document.body.classList.add('fouc-visible');
+        });
+
+        // GANTI DENGAN KUNCI API ANDA YANG ASLI DARI GOOGLE CLOUD
+        const API_KEY = "AIzaSyArNqh6xf3yOVXIyFRJoctWZz94wKmj9_A"; 
+
+        async function searchKajian() {
+            const query = document.getElementById("searchInput").value;
+            const resultsDiv = document.getElementById("results");
+
+            if (!query) {
+                alert("Masukkan kata kunci pencarian.");
+                return;
+            }
+
+            // Tampilan Loading
+            resultsDiv.innerHTML = `<div class="col-span-full text-center py-10">
+                <svg class="animate-spin h-8 w-8 text-audi-red mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <p class="text-gray-400 mt-3">Search Video...</p>
+            </div>`;
+
+            try {
+                // PERBAIKAN: Menggunakan kueri pencarian murni tanpa tambahan filter
+                const res = await fetch(
+                    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&maxResults=50&videoDuration=long&q=${encodeURIComponent(
+                        query 
+                    )}` // HANYA menggunakan 'query'
+                );
+
+                const data = await res.json();
+                resultsDiv.innerHTML = "";
+
+                if (!data.items || data.items.length === 0) {
+                    resultsDiv.innerHTML = `<p class="col-span-full text-center text-gray-400 py-10">Tidak ada hasil ditemukan untuk "${query}".</p>`;
+                    return;
+                }
+
+                data.items.forEach((video) => {
+                    // Filter untuk memastikan hanya video yang memiliki videoId yang ditampilkan.
+                    if (video.id.kind !== 'youtube#video') return; 
+
+                    const vid = video.id.videoId;
+                    const title = video.snippet.title;
+                    const channel = video.snippet.channelTitle; 
+                    const thumb = video.snippet.thumbnails.high.url;
+
+                    const card = `
+                        <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-gray-600">
+                            <a href="https://www.youtube.com/watch?v=${vid}" target="_blank">
+                                <img src="${thumb}" alt="${title}" class="w-full h-48 object-cover transition duration-300 hover:opacity-80" />
+                            </a>
+                            <div class="p-5">
+                                <p class="text-sm font-medium text-gray-400 mb-1 line-clamp-1">${channel}</p>
+                                <h2 class="font-extrabold text-audi-light text-lg line-clamp-2 h-14">
+                                    ${title}
+                                </h2>
+                                <a href="https://www.youtube.com/watch?v=${vid}" target="_blank" class="block">
+                                    <button class="w-full mt-4 bg-audi-red text-white py-2.5 rounded-full font-semibold hover:bg-audi-dark border border-audi-red transition duration-300 shadow-md uppercase tracking-wider">
+                                        Watch now &rarr;
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    `;
+
+                    resultsDiv.innerHTML += card;
+                });
+            } catch (error) {
+                resultsDiv.innerHTML = `<p class="col-span-full text-audi-red text-center py-10">An error occurred while loading data. Please try again.</p>`;
+                console.error("Fetch Error:", error);
+            }
+        }
+
+        // Logika Tambahan untuk Menu Mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            
+            if (isExpanded) {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+            } else {
+                mobileMenu.classList.remove('hidden');
+                menuIconOpen.classList.add('hidden');
+                menuIconClose.classList.remove('hidden');
+            }
+        });
+    </script>
+        
         <section id="dealer" class="py-20 bg-audi-dark text-white text-center"
             style="background-image: url('https://djx5h8pabpett.cloudfront.net/wp-content/uploads/2023/11/HR_Owen_Lamborghini_2023_620-scaled.jpg'); background-size: cover; background-position: center;">
             <div class=" container mx-auto px-4 text-center bg-audi-dark/70 p-10 rounded-xl transition duration-500
@@ -399,107 +504,8 @@
 
     </main>
 
-    <script>
-        // FUNGSI UNTUK MENGATASI FOUC
-        document.addEventListener('DOMContentLoaded', function() {
-            document.body.classList.remove('fouc-hidden');
-            document.body.classList.add('fouc-visible');
-        });
 
-        // GANTI DENGAN KUNCI API ANDA YANG ASLI DARI GOOGLE CLOUD
-        const API_KEY = "AIzaSyArNqh6xf3yOVXIyFRJoctWZz94wKmj9_A"; 
-
-        async function searchKajian() {
-            const query = document.getElementById("searchInput").value;
-            const resultsDiv = document.getElementById("results");
-
-            if (!query) {
-                alert("Masukkan kata kunci pencarian.");
-                return;
-            }
-
-            // Tampilan Loading
-            resultsDiv.innerHTML = `<div class="col-span-full text-center py-10">
-                <svg class="animate-spin h-8 w-8 text-audi-red mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                <p class="text-gray-400 mt-3">Mencari video...</p>
-            </div>`;
-
-            try {
-                // PERBAIKAN: Menggunakan kueri pencarian murni tanpa tambahan filter
-                const res = await fetch(
-                    `https://www.googleapis.com/youtube/v3/search?key=${API_KEY}&part=snippet&type=video&maxResults=50&videoDuration=long&q=${encodeURIComponent(
-                        query 
-                    )}` // HANYA menggunakan 'query'
-                );
-
-                const data = await res.json();
-                resultsDiv.innerHTML = "";
-
-                if (!data.items || data.items.length === 0) {
-                    resultsDiv.innerHTML = `<p class="col-span-full text-center text-gray-400 py-10">Tidak ada hasil ditemukan untuk "${query}".</p>`;
-                    return;
-                }
-
-                data.items.forEach((video) => {
-                    // Filter untuk memastikan hanya video yang memiliki videoId yang ditampilkan.
-                    if (video.id.kind !== 'youtube#video') return; 
-
-                    const vid = video.id.videoId;
-                    const title = video.snippet.title;
-                    const channel = video.snippet.channelTitle; 
-                    const thumb = video.snippet.thumbnails.high.url;
-
-                    const card = `
-                        <div class="bg-gray-900 rounded-xl shadow-lg overflow-hidden border border-gray-800 transition duration-300 hover:ring-2 ring-audi-red hover:shadow-2xl">
-                            <a href="https://www.youtube.com/watch?v=${vid}" target="_blank">
-                                <img src="${thumb}" alt="${title}" class="w-full h-48 object-cover transition duration-300 hover:opacity-80" />
-                            </a>
-                            <div class="p-5">
-                                <p class="text-sm font-medium text-gray-400 mb-1 line-clamp-1">${channel}</p>
-                                <h2 class="font-extrabold text-audi-light text-lg line-clamp-2 h-14">
-                                    ${title}
-                                </h2>
-                                <a href="https://www.youtube.com/watch?v=${vid}" target="_blank" class="block">
-                                    <button class="w-full mt-4 bg-audi-red text-white py-2.5 rounded-full font-semibold hover:bg-audi-dark transition duration-300 shadow-md uppercase tracking-wider">
-                                        Watch now &rarr;
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    `;
-
-                    resultsDiv.innerHTML += card;
-                });
-            } catch (error) {
-                resultsDiv.innerHTML = `<p class="col-span-full text-audi-red text-center py-10">Terjadi kesalahan saat memuat data. Mohon coba lagi.</p>`;
-                console.error("Fetch Error:", error);
-            }
-        }
-
-        // Logika Tambahan untuk Menu Mobile
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const menuIconOpen = document.getElementById('menu-icon-open');
-        const menuIconClose = document.getElementById('menu-icon-close');
-
-        mobileMenuButton.addEventListener('click', () => {
-            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
-            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
-            
-            if (isExpanded) {
-                mobileMenu.classList.add('hidden');
-                menuIconOpen.classList.remove('hidden');
-                menuIconClose.classList.add('hidden');
-            } else {
-                mobileMenu.classList.remove('hidden');
-                menuIconOpen.classList.add('hidden');
-                menuIconClose.classList.remove('hidden');
-            }
-        });
-    </script>
+    
 
       <section id="experience" class="py-20 bg-audi-dark/95 text-white"
             style="background-image: url('https://www.lamborghini.com/sites/it-en/files/DAM/lamborghini/facelift_2019/motorsport/experience/home/2024/experience_og_01.jpg'); background-size: cover; background-position: center;">
